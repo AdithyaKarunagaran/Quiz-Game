@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/png">
+</head>
+<body>
+    <div class="overlay" id="register">
+        <div id="overlay">
+            <div class="game-name">
+                <h1>Quiz Game</h1>
+            </div>
+            <form id="user-info-form">
+                <input type="text" id="name" placeholder="Enter your name">
+                <input type="email" id="email" placeholder="Enter your email">
+                <input type="tel" id="phone" placeholder="Enter your phone number">
+                <button type="button" id="register-button" onclick="acceptUserData()">Submit</button>
+                <button type="button" id="changeAdmin" onclick="changeAdminLogin()">Admin</button>
+            </form>
+
+            <form id="admin-details" style="display: none;">
+                <input type="text" id="admin-id" placeholder="Enter your ID No">
+                <input type="text" id="admin-name" placeholder="Enter your name" autocomplete="username">
+                <input type="password" id="password" placeholder="Enter password" autocomplete="current-password">
+                <button type="button" id="Admin-login" onclick="AdminLogin()">Login</button>
+            </form>
+        </div>
+    </div>
+    <div id="admin-container" style="display: none;">
+        <header>
+            <div id="admin_Name"><p id="admin-welcome">Welcome,</p><p id="admin-display-name"></p></div>
+        </header>
+        <div id="btns">
+            <button type="button" onclick="updateQuestions()">Update Question</button>
+            <button type="button" onclick="showResultFilter()">View Results</button>
+            <button onclick="addNewQuestion()">Add Question</button>
+            <button id="manage-admins-button" onclick="fetchAdmins()" style="display: none;">Manage Admins</button>
+            <button id="manage-requests" onclick="viewRequests()" style="display: none;"> View Request</button>
+        </div>
+        <div id="question-list-container"></div>
+        <div id="result-filter-container" style="display:none;">
+            <label for="result-date">Date and Time (YYYY-MM-DDTHH:MM):</label>
+            <input type="datetime-local" id="result-date" name="result-date">
+            <button onclick="viewResults()">Submit</button>
+        </div>
+        <div id="result-container" style="display:none;">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number of Attempts</th>
+                        <th>Scores</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="admin-list-container" style="display: none;">
+            <button id="add-new-admin-button" onclick="addNewAdmin()">Add New Admin</button>
+            <table id="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Pssword</th>
+                        <th>Edit Question</th>
+                        <th>Add Question</th>
+                        <th>Manage</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-table-body"></tbody>
+            </table>
+        </div>
+        
+        <div id="request-list-container" style="display: none;"></div>
+
+    </div>
+    <div id="quiz-container">
+        <header>
+            <div id="user-name"><p id="user-welcome">Welcome,</p><p id="user-display-name"></p></div>
+            <div id="timer">60</div>
+        </header>
+        <section class="ref" id="ref">
+            <div class="indicator">
+                <div class="question-number">Question No: <span id="question-number"></span> </div>
+                <div id="answered-indicator">
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="allquestions">
+                        <div id="dropdown-status" class="dropdown-content">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="instructions" class="instructions-container">
+            <p>Read the instructions carefully before proceeding:</p>
+            <ul>
+                <li>Do Not Refresh The Page</li>
+                <li>Make sure you answer each question before the timer runs out.</li>
+                <li>Select your answers carefully; once submitted, they cannot be changed.</li>
+                <li>When you minimize the browser window or switch to a different tab during the quiz, the current question will be automatically skipped with a score of zero for that specific question.</li>
+                <li><span class="answered-ques">1</span>is answered questions.</li>
+                <li><span class="unanswered-ques">2</span>is unanswerd question.</li>
+                <li><span class="current-ques">3</span>is current question.</li>
+                <li><span class="upcoming-ques">4</span>is upcomming questions.</li>
+            </ul>
+            <div>
+                <button id="accept-instructions" onclick="acceptInstructions()">Accept and Start Quiz</button>
+            </div>
+        </div>
+        <section id="question-container" class="ques-container">
+            <div id="question-text"></div>
+            <ul id="choices-list"></ul>
+            <footer>
+                <button id="next-button" style="display: none;" onclick="nextQuestion()">Next Question</button>
+            </footer>
+        </section>
+        <div class="copy-rights">@Created by Adithya</div>
+    </div>
+    <div class="submit-container" id="end">
+        <div>
+            <P class="tk">Thank You</P>
+            <p class="success">Successfully Submitted</p>
+        </div>
+    </div>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

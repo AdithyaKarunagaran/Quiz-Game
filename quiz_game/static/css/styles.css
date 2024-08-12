@@ -1,0 +1,657 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    list-style-type: none;
+    color: black;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+label {
+    font-size: 18px;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Overlay Styles */
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(2, 2, 2, 0.877);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#overlay {
+    width: fit-content;
+    height: max-content;
+    box-shadow: 0px 0px 20px  rgb(255, 255, 255);
+    border-radius: 5px;
+    margin: auto;
+    padding: 0.1rem 0.1rem;
+    background-color: rgba(255, 255, 255, 0.372);
+}
+
+.game-name {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.842);
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 0.5rem 0;
+    color: blue;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+
+#user-info-form, #admin-details {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 20vw;
+    max-height: 30vh;
+    background-color: rgba(0, 0, 0, 0.973);
+}
+
+#user-info-form input, #admin-details input {
+    all: unset;
+    width: 95%;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    font-size: 1vw;
+    border-radius:5px ;
+    background-color: transparent;
+    border:  2px solid rgb(166, 164, 164);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+.overlay button {
+    padding: 0.4rem 0.5rem;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1vw;
+}
+
+button {
+    border: 1px solid rgb(55, 0, 255);
+    padding: 0 1rem;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 1.5vw;
+    background-color: #4cbad5;
+    color: white;
+    cursor: pointer;
+}
+
+.instructions-container {
+    font-size: 1.5vw;
+    text-align: left;
+    height: 85vh;
+    padding: 10px;
+    background-color: #eee;
+    border-bottom: 2px solid #ccc;
+}
+
+.instructions-container p {
+    color: red;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.instructions-container div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions-container li {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    width: 100%;
+}
+
+.instructions-container li span {
+    border: 2px solid black;
+    border-radius: 80% 80% 0 0;
+    text-align: center;
+    color: transparent;
+    padding: 0.2rem 0.7rem;
+    margin-right: 1rem;
+}
+
+.answered-ques {
+    background-color: green;
+}
+
+.current-ques {
+    background-color: orange;
+}
+
+.unanswered-ques {
+    background-color: red;
+}
+
+.upcoming-ques {
+    background-color: white;
+}
+/* Header with user name display */
+#user-name, #admin_Name {
+    flex-grow: 1;
+    padding-left: 20px;
+    font-size: 2vw;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+#user-display-name, #admin-display-name {
+    color: black;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+#quiz-container {
+    width: 100%;
+    max-width: 90%;
+    margin: auto;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    background-color: #4cbad5;
+    height: 6vh;
+}
+
+#timer {
+    display: none;
+    padding: 10px 20px;
+    font-size: 24px;
+    color: red;
+}
+
+.ref {
+    display: none;
+    padding: 0 1rem;
+    height: 4vh;
+    background-color: #66A5AD;
+}
+
+.indicator {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.question-number {
+    font-size: 1.5vw;
+    color: white;
+}
+#question-number {
+    font-size: 1.5vw;
+    color: red;
+}
+
+#answered-indicator {
+    margin-right: 15%;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#answered-indicator:hover {
+    background-color: #ddd;
+}
+
+.allquestions {
+    display: none;
+    top: 3rem;
+    left: -7rem;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-height: 200px;
+    min-width: 250px;
+    padding: 0 1rem;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dropdown-content p {
+    border: 2px solid black;
+    border-radius: 80% 80% 0 0;
+    color: black;
+    text-align: center;
+    width: 1.5rem;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content p.answered {
+    background-color: green;
+}
+
+.dropdown-content p.current {
+    background-color: orange;
+}
+
+.dropdown-content p.unanswered {
+   background-color: red;
+}
+
+.dropdown-content p.upcoming {
+    background-color: white;
+}
+
+#answered-indicator:hover .allquestions {
+    display: block;
+}
+
+
+.ques-container {
+  height: 87vh;
+  display: none;
+}
+
+#question-text {
+    color: black;
+    font-weight: bold;
+    font-size: 1.5vw;
+    text-align: left;
+    padding: 2rem 1rem;
+}
+
+
+#next-button, #submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#choices-list {
+    text-align: left;
+    text-indent: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.radio-label {
+    font-size: 1.5vw;
+}
+
+
+footer {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.copy-rights {
+    height: 3vh;
+    background-color: #14809b;
+    text-align: end;
+    font-size: 1rem;
+    color: rgb(167, 163, 163);
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label.radio-label:before {
+  content: '';
+  display: inline-block;
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgb(0, 157, 255);
+  background-color: #fff;
+  vertical-align: middle;
+}
+
+input[type="radio"]:checked + label:before {
+  background-color: #66A5AD;
+}
+
+label.radio-label:before {
+  margin-right: 20px;
+}
+
+
+.submit-container {
+    display: none;
+    background-color: black;
+    color: white;
+    height: 95vh;
+    width: 100vw;
+}
+
+.submit-container div {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.tk {
+    font-size: 30px;
+}
+
+.success {
+    font-size: 24px;
+}
+
+#admin-container {
+    padding: 0 1rem;
+}
+
+#btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+    margin-bottom: 1rem;
+}
+
+.question-box {
+    padding: 10px;
+    margin: 10px 0;
+    position: relative;
+}
+
+.buttons button {
+    font-size: 0.9rem;
+    padding: 0;
+    padding: 0.5rem 0.5rem;
+}
+
+.buttons {
+    padding-left: 1.5rem;
+}
+
+.question-text, .choice-input, .answer-input {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    outline: none;
+    border: none;
+    padding-left: 1rem ;
+    font-size: 1rem;
+}
+
+.choice-input {
+    margin-bottom: 0.5rem;
+}
+
+.delete-button, .edit-button, .save-button {
+    margin-right: 5px;
+}
+
+#result-filter-container {
+    margin-bottom: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+input[type="datetime-local"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+
+    #user-info-form input, #admin-details input {
+        font-size: 1.3vw;
+    }
+
+    #user-info-form, #admin-details {
+        padding: 15px;
+        max-width: 25vw;
+        max-height: 35vh;
+    }
+
+    .overlay button {
+        font-size: 1.5vw;
+    }
+
+    .instructions-container {
+        font-size: 1.5vw;
+    }
+
+    #user-name {
+        font-size: 3vw;
+    }
+
+    #timer {
+        font-size: 2.5vw;
+    }
+
+    .ref {
+        padding-right: 10vw;
+    }
+
+    #question-text, #question-number, .question-number  {
+        font-size: 2vw;
+    }
+
+    #next-button, #submit-button {
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-size: 2vw;
+    }
+
+    .radio-label {
+        font-size: 2vw;
+    }
+
+    .copy-rights {
+        height: 3vh;
+        font-size: 2vw;
+    }
+
+    .tk {
+        font-size: 30px;
+    }
+
+    .success {
+        font-size: 24px;
+    }
+
+    label.radio-label:before {
+        width: 10px;
+        height: 10px;
+    }
+
+    #result-filter-container label {
+        font-size: 2vw;
+    }
+
+    input[type="datetime-local"] {
+        border-radius: 4px;
+        font-size: 2vw;
+    }
+}
+
+
+@media screen and (max-width: 426px) {
+    button,
+    .buttons button,
+    .overlay button,
+    #user-info-form input,
+    #admin-details input,
+    .instructions-container,
+    #timer,
+    #question-text,
+    #question-number,
+    .question-number,
+    #next-button,
+    #submit-button,
+    .radio-label {
+        font-size: 3vw;
+    }
+
+    #admin-container {
+        width: 100vw;
+        padding: 0;
+    }
+
+    #btns button .save-button {
+        font-size: 3vw;
+        padding: 0.5rem 0.5rem;
+    }
+
+    .question-box {
+        padding: 5px;
+        margin: 5px 0;
+    }
+
+    #question-list-container {
+        width: 100vw;
+        text-wrap: wrap;
+    }
+
+    .question-text, .choice-input, .answer-input  {
+        font-size: 3.2vw;
+        padding: 0;
+        text-indent: 1vw;
+        text-wrap: wrap;
+    }
+
+    #result-filter-container label {
+        font-size: 2.8vw;
+        margin-left: 1rem;
+    }
+
+    #result-filter-container button {
+        margin-left: 45vw;
+    }
+
+    input[type="datetime-local"] {
+        font-size: 2.5vw;
+    }
+
+    table {
+        width: 100vw;
+        font-size: 2.5vw;
+    }
+    th, td {
+        padding: 2px;
+        text-indent: 2px;
+    }
+
+    #user-info-form, #admin-details {
+        max-width: 45vw;
+        max-height: 40vh;
+    }
+
+    #quiz-container {
+        max-width: 100%;
+    }
+
+    #user-name {
+        font-size: 4vw;
+    }
+
+    .ref {
+        padding-right: 15vw;
+    }
+
+    .copy-rights {
+        font-size: 3vw;
+        padding-right: 5vw;
+    }
+
+    .buttons button,
+    .overlay button,
+    #user-info-form input,
+    #admin-details input,
+    .instructions-container,
+    #timer,
+    #question-text,
+    #question-number,
+    .question-number,
+    #next-button,
+    #submit-button,
+    .radio-label {
+        font-size: 3.5vw;
+    }
+
+    .allquestions {
+        top: 2rem;
+        left: -6rem;
+        min-height: 100px;
+        min-width: 180px;
+    }
+
+    .dropdown-content p {
+        width: 1.1rem;
+        font-size: 2vw;
+    }
+
+    .dropdown-content {
+        gap: 0.5rem;
+    }
+}
